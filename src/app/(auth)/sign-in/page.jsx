@@ -4,7 +4,7 @@ export default function SignInPage() {
     return (
         <main className="min-h-screen bg-[#F2F6F1] px-4 py-6">
 
-            <div className="mx-auto w-full max-w-[344px]">
+            <div className="mx-auto w-full max-w-86">
 
                 {/* Header */}
                 <div className="mb-6 text-center">
