@@ -1,6 +1,42 @@
+"use client";
+import { signIn } from "@/lib/auth-client";
+import { callbackOAuth } from "better-auth/api";
 import Link from "next/link";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function SignInPage() {
+    const [isVisible, setIsVisible] = useState(false);
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData.entries());
+
+
+
+        const { data: resData, error } = await signIn.email({
+            email: data.email,
+            password: data.password,
+            callbackURL: "/"
+        });
+        console.log(resData, error);
+
+        if(error){
+            toast.error(error.message);
+        }
+    };
+
+    const handleGoogleSignIn = async () => {
+        const data = await signIn.social({
+            provider: "google",
+            callbackURL: "/"
+        })
+        console.log(data);
+
+    }
+
+    
     return (
         <main className="min-h-screen bg-[#F2F6F1] px-4 py-6">
 
@@ -20,7 +56,7 @@ export default function SignInPage() {
                 {/* Sign In Card */}
                 <div className="rounded-xl border border-[#DDE6DD] bg-[#FBFDFB] p-5 shadow-sm">
 
-                    <form className="space-y-3">
+                    <form className="space-y-3" onSubmit={onSubmit}>
 
                         {/* Email */}
                         <div>
@@ -33,6 +69,7 @@ export default function SignInPage() {
 
                             <input
                                 id="email"
+                                name="email"
                                 type="email"
                                 placeholder="you@example.com"
                                 className="h-[35px] w-full rounded-lg border border-[#E1E8E1] bg-transparent px-3 text-sm text-gray-800 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
@@ -50,6 +87,7 @@ export default function SignInPage() {
 
                             <input
                                 id="password"
+                                name="password"
                                 type="password"
                                 placeholder="কমপক্ষে ৮ অক্ষর"
                                 className="h-[35px] w-full rounded-lg border border-[#E1E8E1] bg-transparent px-3 text-sm text-gray-800 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
@@ -83,6 +121,7 @@ export default function SignInPage() {
                         {/* Google */}
                         <button
                             type="button"
+                            onClick={handleGoogleSignIn}
                             className="flex h-[34px] items-center justify-center gap-1.5 rounded-lg border border-[#E1E8E1] text-xs font-medium text-[#303B32] transition hover:bg-gray-50"
                         >
                             {/* Google Icon */}
