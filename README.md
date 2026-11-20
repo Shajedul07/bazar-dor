@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 Bazar-Dor (বাজার দর)
 
-## Getting Started
+### A Modern Marketplace Experience
 
-First, run the development server:
+Bazar-Dor is a modern, responsive marketplace web application designed to make browsing and exploring products easier. It provides a clean user interface, category-based navigation, and user authentication to create a convenient shopping experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The project is built with modern web technologies, focusing on responsive design, usability, and a smooth user experience across different devices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Responsive Design** – Optimized for desktop, tablet, and mobile devices.
+- **Category-Based Navigation** – Browse different product categories easily.
+- **User Authentication** – Sign up and sign in to access your account.
+- **Social Authentication** – Supports Google and GitHub sign-in.
+- **User Profile** – View and manage your account information.
+- **Profile Avatar** – Automatically displays the authenticated user's profile image when available.
+- **User Account Management** – Update your profile name and sign out securely.
+- **Dynamic Category Data** – Fetches category information from an external API.
+- **Modern UI** – Clean interface with reusable components and consistent styling.
+- **Responsive Navigation** – Mobile-friendly navigation with horizontally scrollable categories.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Technology | Purpose |
+|---|---|
+| Next.js | React framework and application routing |
+| React | Building interactive user interfaces |
+| JavaScript | Application logic |
+| Tailwind CSS | Responsive styling |
+| HeroUI | UI components |
+| Better Auth | Authentication and session management |
+| MongoDB | Database |
+| Gravity UI Icons | Interface icons |
+| External REST API | Dynamic category data |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🔐 Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Bazar-Dor uses **Better Auth** to manage user authentication.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Authentication features include:
+
+- Email-based sign-in and sign-up.
+- Google authentication.
+- GitHub authentication.
+- Session management.
+- User profile information.
+- Secure sign-out functionality.
+
+---
+
+## 📱 Responsive Experience
+
+The application is designed to work across different screen sizes.
+
+- **Desktop:** Full navigation and comfortable browsing layout.
+- **Tablet:** Adaptable layout with flexible spacing.
+- **Mobile:** Compact navigation and horizontally scrollable category links.
+
+---
+
+## 📂 Project Highlights
+
+Some of the important parts of the application include:
+
+- **Navbar:** Displays the brand, authentication controls, user menu, and dynamic product categories.
+- **Authentication:** Handles user registration, login, social sign-in, and sessions.
+- **Profile:** Displays user information and provides profile update and sign-out functionality.
+- **Category Navigation:** Fetches category data from the API and displays category links.
+
+---
+
+## 🎯 Project Goal
+
+The goal of Bazar-Dor is to build a practical marketplace application while applying modern frontend and full-stack development concepts, including:
+
+- Component-based architecture.
+- API integration.
+- Authentication and session handling.
+- Database connectivity.
+- Responsive UI development.
+- Dynamic data rendering.
+
+---
+
+## 👨‍💻 Developer
+
+**Shajedul Haque Khan**
+
+Aspiring Frontend / Full-Stack Developer
+
+- GitHub: [@shajedulhaquekhan07](https://github.com/shajedulhaquekhan07)
+
+---
