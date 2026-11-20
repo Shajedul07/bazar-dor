@@ -1,4 +1,5 @@
-import { betterAuth, google } from "better-auth";
+
+import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 
@@ -6,27 +7,38 @@ const client = new MongoClient(process.env.MONGO_URI);
 const db = client.db("bazar-dor");
 
 export const auth = betterAuth({
+    baseURL: process.env.BETTER_AUTH_URL,
+
+    trustedOrigins: [
+        "https://bazar-dor-roan-tau.vercel.app",
+        "http://localhost:3000",
+    ],
+
+    secret: process.env.BETTER_AUTH_SECRET,
+
     account: {
         accountLinking: {
             enabled: true,
-            trustedProviders: ["google, github"],
+            trustedProviders: ["google", "github"],
         },
     },
+
     emailAndPassword: {
         enabled: true,
         autoSignIn: false,
     },
+
     socialProviders: {
         google: {
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         },
+
         github: {
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
         },
     },
-
 
     database: mongodbAdapter(db, {
         client,
