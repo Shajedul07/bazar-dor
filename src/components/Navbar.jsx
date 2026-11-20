@@ -168,7 +168,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Category row */}
+            
             {/* Category row */}
             <nav
                 aria-label="Categories"
@@ -177,9 +177,7 @@ export default function Navbar() {
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
 
                     <div
-                        className="flex min-h-11 items-center gap-4 overflow-x-auto overscroll-x-contain px-2 py-1 sm:gap-6
-            [scrollbar-width:none]
-            [&::-webkit-scrollbar]:hidden"
+                        className="flex min-h-11 items-center gap-4 overflow-x-auto overscroll-x-contain px-2 py-1 sm:gap-6"
                     >
                         {categories.map((cat) => (
                             <Link
