@@ -245,6 +245,7 @@ export default function SignUpPage() {
                             {/* GitHub */}
                             <button
                                 type="button"
+                                onClick={() => signIn.social({ provider: "github", callbackURL: "/" })}
                                 className="flex h-[34px] items-center justify-center gap-1.5 rounded-lg border border-[#E1E8E1] text-xs font-medium text-[#303B32] transition hover:bg-gray-50"
                             >
                                 <svg

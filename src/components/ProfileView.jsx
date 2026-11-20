@@ -2,20 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-    Avatar,
-    Button,
-    Card,
-    Form,
-    Input,
-    Label,
-    TextField,
-} from "@heroui/react";
-
-// Change this path if your auth client file is named differently
+import { Avatar, Button, Card, Form, Input, Label, TextField } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
-
-
 
 const SignOutIcon = () => (
     <svg
@@ -35,21 +23,13 @@ const SignOutIcon = () => (
     </svg>
 );
 
-
-// Profile component
 const ProfileView = ({ user }) => {
     const router = useRouter();
 
-    // Input value (starts with the current name)
     const [name, setName] = useState(user.name ?? "");
-
-    // Loading states for the two buttons
     const [isUpdating, setIsUpdating] = useState(false);
     const [isSigningOut, setIsSigningOut] = useState(false);
-
-    // Message shown under the update button: { type: "success" | "error", text }
     const [message, setMessage] = useState(null);
-
 
     // Sign out
     const handleSignOut = async () => {
@@ -66,15 +46,12 @@ const ProfileView = ({ user }) => {
         });
     };
 
-
     // Update name
-   
     const handleUpdate = async (e) => {
         e.preventDefault();
 
         const trimmedName = name.trim();
 
-        // Do not allow an empty name
         if (!trimmedName) {
             setMessage({ type: "error", text: "নাম লিখুন" });
             return;
@@ -100,68 +77,75 @@ const ProfileView = ({ user }) => {
         router.refresh();
     };
 
-
-    // UI
     return (
-        <div className="flex flex-col">
+        <div className="mx-auto w-full max-w-4xl px-3 sm:px-5 md:px-6">
 
             {/* Page heading */}
-            <div className="mb-6">
-                <h1 className="text-3xl font-bold text-[#1c2b21]">আমার প্রোফাইল</h1>
-                <p className="mt-1 text-[#5f6b63]">
+            <div className="mb-5 sm:mb-6">
+                <h1 className="text-2xl font-bold text-[#1c2b21] sm:text-3xl">
+                    আমার প্রোফাইল
+                </h1>
+
+                <p className="mt-1 text-sm text-[#5f6b63] sm:text-base">
                     আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
                 </p>
             </div>
 
+            {/* Card 1: User info */}
+            <Card className="mb-5 rounded-2xl border border-[#e2e7e0] bg-[#fafbf9] p-4 shadow-none sm:mb-6 sm:rounded-3xl sm:p-6 md:p-7">
 
-            {/* Card 1: user info + sign out */}
-            <Card className="mb-6 rounded-3xl border border-[#e2e7e0] bg-[#fafbf9] p-7.5 shadow-none">
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
 
                     {/* Avatar + name + email */}
-                    <div className="flex items-center gap-5">
-                        <Avatar className="size-24 rounded-[20px] bg-[#f0f0f0]">
+                    <div className="flex min-w-0 items-center gap-3 sm:gap-5">
+
+                        <Avatar className="size-16 shrink-0 rounded-2xl bg-[#f0f0f0] sm:size-20 md:size-24">
                             <Avatar.Image
                                 src={user.image ?? undefined}
                                 alt={user.name ?? "Profile"}
-                                className="rounded-[20px]"
+                                className="rounded-2xl"
                             />
-                            <Avatar.Fallback className="rounded-[20px] text-2xl font-semibold text-[#1c2b21]">
+
+                            <Avatar.Fallback className="rounded-2xl text-xl font-semibold text-[#1c2b21] sm:text-2xl">
                                 {user.name?.charAt(0)?.toUpperCase()}
                             </Avatar.Fallback>
                         </Avatar>
 
-                        <div>
-                            <p className="text-2xl font-medium text-[#1c2b21]">{user.name}</p>
-                            <p className="text-lg text-[#6b7280]">{user.email}</p>
+                        <div className="min-w-0 flex-1">
+                            <p className="truncate text-lg font-medium text-[#1c2b21] sm:text-xl md:text-2xl">
+                                {user.name}
+                            </p>
+
+                            <p className="break-all text-sm text-[#6b7280] sm:text-base md:text-lg">
+                                {user.email}
+                            </p>
                         </div>
                     </div>
 
-                    {/* Sign out button */}
+                    {/* Sign out */}
                     <Button
                         variant="outline"
                         onPress={handleSignOut}
                         isDisabled={isSigningOut}
-                        className="h-11 rounded-xl border border-[#d64545] bg-transparent px-5 font-semibold text-[#c53030] hover:bg-[#fdf2f2]"
+                        className="h-11 w-full shrink-0 rounded-xl border border-[#d64545] bg-transparent px-5 font-semibold text-[#c53030] hover:bg-[#fdf2f2] sm:w-auto"
                     >
                         <SignOutIcon />
-                        সাইন আউট
+                        {isSigningOut ? "সাইন আউট হচ্ছে..." : "সাইন আউট"}
                     </Button>
 
                 </div>
             </Card>
 
+            {/* Card 2: Update name */}
+            <Card className="rounded-2xl border border-[#e2e7e0] bg-[#fafbf9] p-4 shadow-none sm:rounded-3xl sm:p-6">
 
-            {/* Card 2: update name form */}
-            <Card className="rounded-3xl border border-[#e2e7e0] bg-[#fafbf9] p-6 shadow-none">
+                <h2 className="text-lg font-semibold text-[#1c2b21] sm:text-xl">
+                    তথ্য
+                </h2>
 
-                {/* Card title */}
-                <h2 className="text-lg font-semibold text-[#1c2b21]">তথ্য</h2>
-
-                {/* Form */}
                 <Form
                     onSubmit={handleUpdate}
-                    className="mt-6 flex flex-col gap-5 px-7 pb-4"
+                    className="mt-5 flex w-full flex-col gap-5 sm:mt-6 sm:gap-6"
                 >
 
                     {/* Name field */}
@@ -171,7 +155,10 @@ const ProfileView = ({ user }) => {
                         onChange={setName}
                         className="flex w-full flex-col gap-2"
                     >
-                        <Label className="font-medium text-[#1c2b21]">নাম</Label>
+                        <Label className="font-medium text-[#1c2b21]">
+                            নাম
+                        </Label>
+
                         <Input
                             placeholder="আপনার নাম লিখুন"
                             className="h-12 w-full rounded-xl border border-[#e2e7e0] bg-[#fafbf9] px-4 shadow-none"
@@ -190,7 +177,9 @@ const ProfileView = ({ user }) => {
                     {/* Success / error message */}
                     {message && (
                         <p
-                            className={`text-sm ${message.type === "success" ? "text-[#058a40]" : "text-[#c53030]"
+                            className={`text-sm ${message.type === "success"
+                                    ? "text-[#058a40]"
+                                    : "text-[#c53030]"
                                 }`}
                         >
                             {message.text}

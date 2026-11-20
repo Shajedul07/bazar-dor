@@ -1,6 +1,6 @@
 "use client";
 import { signIn } from "@/lib/auth-client";
-import { callbackOAuth } from "better-auth/api";
+import { callbackOAuth, signInEmail } from "better-auth/api";
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -22,7 +22,7 @@ export default function SignInPage() {
         });
         console.log(resData, error);
 
-        if(error){
+        if (error) {
             toast.error(error.message);
         }
     };
@@ -36,7 +36,7 @@ export default function SignInPage() {
 
     }
 
-    
+
     return (
         <main className="min-h-screen bg-[#F2F6F1] px-4 py-6">
 
@@ -150,6 +150,7 @@ export default function SignInPage() {
                         {/* GitHub */}
                         <button
                             type="button"
+                            onClick={() => signIn.social({ provider: "github", callbackURL: "/" })}
                             className="flex h-[34px] items-center justify-center gap-1.5 rounded-lg border border-[#E1E8E1] text-xs font-medium text-[#303B32] transition hover:bg-gray-50"
                         >
                             <svg

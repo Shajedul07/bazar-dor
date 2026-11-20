@@ -57,8 +57,13 @@ function UserMenu({ user, onAction }) {
         <Dropdown>
             <Dropdown.Trigger className="flex cursor-pointer items-center gap-2 rounded-full p-1 pr-2 outline-none transition-colors hover:bg-default data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-green-600">
                 <Avatar size="sm">
-                    {/* 👉 User image goes here: <Avatar.Image src={user.image} alt={user.name} /> */}
-                    <Avatar.Fallback>{firstName.charAt(0).toUpperCase()}</Avatar.Fallback>
+                    {user.image ? (
+                        <Avatar.Image src={user.image} alt={user.name || "User"} />
+                    ) : null}
+
+                    <Avatar.Fallback>
+                        {firstName.charAt(0).toUpperCase()}
+                    </Avatar.Fallback>
                 </Avatar>
 
                 {/* Name is hidden on very small screens to save space */}
@@ -78,12 +83,12 @@ function UserMenu({ user, onAction }) {
                 <Dropdown.Menu onAction={onAction}>
                     <Dropdown.Item id="profile" textValue="আমার প্রোফাইল">
                         <Persons className="size-4 shrink-0 text-muted" />
-                        <Label>আমার প্রোফাইল</Label>
+                        <Label className="text-black">আমার প্রোফাইল</Label>
                     </Dropdown.Item>
 
                     <Dropdown.Item id="sign-out" textValue="সাইন আউট" variant="danger">
                         <ArrowRightFromSquare className="size-4 shrink-0 text-danger" />
-                        <Label>সাইন আউট</Label>
+                        <Label className="text-danger">সাইন আউট</Label>
                     </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown.Popover>
@@ -164,23 +169,33 @@ export default function Navbar() {
             </div>
 
             {/* Category row */}
+            {/* Category row */}
             <nav
                 aria-label="Categories"
-                className="border-t border-border/60 bg-green-50/60 dark:bg-green-950/20"
+                className="relative border-t border-border/60 bg-green-50/60 dark:bg-green-950/20"
             >
-                <div className="mx-auto flex min-h-11 max-w-7xl items-center gap-5 overflow-x-auto px-4 sm:gap-6 sm:px-6 lg:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    {categories.map((cat) => (
-                        <Link
-                            key={cat.id}
-                            href={`/category/${cat.slug}`}
-                            className="flex shrink-0 items-center gap-1.5 whitespace-nowrap py-2 text-[13px] font-semibold text-foreground transition-colors hover:text-green-600 sm:text-sm"
-                        >
-                            <span className="text-base leading-none" aria-hidden="true">
-                                {cat.icon}
-                            </span>
-                            <span>{cat.nameBn}</span>
-                        </Link>
-                    ))}
+                <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+
+                    <div
+                        className="flex min-h-11 items-center gap-4 overflow-x-auto overscroll-x-contain px-2 py-1 sm:gap-6
+            [scrollbar-width:none]
+            [&::-webkit-scrollbar]:hidden"
+                    >
+                        {categories.map((cat) => (
+                            <Link
+                                key={cat.id}
+                                href={`/category/${cat.slug}`}
+                                className="flex shrink-0 items-center gap-1.5 whitespace-nowrap py-2 text-sm font-semibold text-foreground transition-colors hover:text-green-600"
+                            >
+                                <span className="text-base leading-none" aria-hidden="true">
+                                    {cat.icon}
+                                </span>
+
+                                <span>{cat.nameBn}</span>
+                            </Link>
+                        ))}
+                    </div>
+
                 </div>
             </nav>
         </header>
