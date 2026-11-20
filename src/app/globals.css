@@ -2,7 +2,6 @@
 @import "@heroui/styles";
 @plugin "daisyui";
 
-/* body {
-    background-color: white;
-
-} */
+body {
+  background-color: #f6fef8;
+}

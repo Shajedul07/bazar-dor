@@ -7,7 +7,6 @@ const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
 
 const UNIT_BN = { kg: "কেজি", litre: "লিটার", dozen: "ডজন", piece: "পিস" };
 
-// Newer emojis (🫘 🫙 🫚) don't render on many Windows setups, so swap in older ones.
 const EMOJI_FALLBACK = { "🍚": "🌰", "🍗": "🛢️", "🌶️": "🌿" };
 
 const TREND = {
@@ -62,7 +61,6 @@ const Marque = () => {
         return () => controller.abort();
     }, []);
 
-    // Keep the strip's height while loading so the page doesn't jump.
     if (loading) {
         return <div className="h-[42px] border-y border-gray-200 bg-white" />;
     }
